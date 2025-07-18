@@ -38,3 +38,20 @@ SELECT * FROM customers LIMIT 2;
 -- Use alias
 SELECT name AS customer_name, age FROM customers;
 
+
+-- Day 2
+
+-- Customers older than 25 AND living in New York
+SELECT * FROM customers WHERE age > 25 AND city = 'New York';
+
+-- Customers from Chicago OR Seattle
+SELECT * FROM customers WHERE city IN ('Chicago', 'Seattle');
+
+-- Customers with age between 25 and 40
+SELECT * FROM customers WHERE age BETWEEN 25 AND 40;
+
+-- Name starts with 'A'
+SELECT * FROM customers WHERE name LIKE 'A%';
+
+-- Name contains 'li'
+SELECT * FROM customers WHERE name LIKE '%li%';
