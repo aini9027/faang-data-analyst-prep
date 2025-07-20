@@ -55,3 +55,5 @@ SELECT * FROM customers WHERE name LIKE 'A%';
 
 -- Name contains 'li'
 SELECT * FROM customers WHERE name LIKE '%li%';
+
+day 3
