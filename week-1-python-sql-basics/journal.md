@@ -41,3 +41,42 @@
 - Tomorrow I want to get more comfortable with lists and dictionaries.
 - Good start! Let’s build momentum.
 
+
+
+## 📘 SQL Practice Log - Entry 001: LEFT JOIN Basics
+
+### 🗓️ Date: 2025-07-21  
+### 🎯 Problem: [LeetCode SQL #175 - Combine Two Tables](https://leetcode.com/problems/combine-two-tables/)  
+### 🔍 Topic: LEFT JOIN
+
+---
+
+### ✅ Objective:
+Combine data from two tables: `Person` and `Address`, such that all persons are shown even if they don't have an address. Show:
+- `firstName`
+- `lastName`
+- `city`
+- `state`
+
+---
+
+### 🧠 Concepts Learned:
+- `LEFT JOIN`: Used to get all rows from the **left table** and matching rows from the right table. If there's no match, it fills with `NULL`.
+- Aliases: `p` and `a` are **shortcuts** used for table names.
+- `ON` clause: This tells SQL how to match rows — in this case, based on `personId`.
+
+---
+
+### 🧪 Final Query:
+```sql
+SELECT 
+    p.firstName,
+    p.lastName,
+    a.city,
+    a.state
+FROM 
+    Person p
+LEFT JOIN 
+    Address a
+ON 
+    p.personId = a.personId;
