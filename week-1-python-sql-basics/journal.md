@@ -80,3 +80,37 @@ LEFT JOIN
     Address a
 ON 
     p.personId = a.personId;
+
+
+## 📘 SQL & Pandas Practice Log - Entry 002: Self Join for Employee-Manager Comparison
+
+### 🗓️ Date: 2025-07-21  
+### 🎯 Problem: [LeetCode SQL #181 - Employees Earning More Than Their Managers](https://leetcode.com/problems/employees-earning-more-than-their-managers/)  
+### 🔍 Topic: Self Join + Filtering
+
+---
+
+### ✅ Objective:
+Return names of employees who earn more than their managers.
+
+---
+
+### 🧠 SQL Concepts Learned:
+- **Self Join**: Joining a table with itself to compare two roles (employee vs manager)
+- Use `e.managerId = m.id` to match employee with their manager
+- Filter: `WHERE e.salary > m.salary`
+
+---
+
+### 🧪 SQL Query:
+```sql
+SELECT 
+    e.name AS Employee
+FROM 
+    Employee e
+JOIN 
+    Employee m 
+ON 
+    e.managerId = m.id
+WHERE 
+    e.salary > m.salary;
