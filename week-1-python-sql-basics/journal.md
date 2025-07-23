@@ -114,3 +114,33 @@ ON
     e.managerId = m.id
 WHERE 
     e.salary > m.salary;
+
+
+## 📘 SQL Practice Log - Entry 003: Customers Who Never Order
+
+### 🗓️ Date: 2025-07-23  
+### 🎯 Problem: [LeetCode SQL #183 - Customers Who Never Order](https://leetcode.com/problems/customers-who-never-order/)  
+### 🔍 Topic: LEFT JOIN, Aliases, NULL Handling
+
+---
+
+### **Objective**
+Find all customers who never placed an order.
+
+---
+
+### **Understanding the Data**
+**Customers Table**
+- `id`: unique customer ID
+- `name`: name of the customer
+
+**Orders Table**
+- `id`: unique order ID
+- `customerId`: references `Customers.id` to show who placed the order
+
+We need to find customers present in `Customers` but not in `Orders`.
+
+---
+
+### **Key SQL Concepts Learned**
+- **LEFT**
