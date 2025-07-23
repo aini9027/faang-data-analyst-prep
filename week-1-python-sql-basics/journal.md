@@ -144,3 +144,28 @@ We need to find customers present in `Customers` but not in `Orders`.
 
 ### **Key SQL Concepts Learned**
 - **LEFT**
+
+Pandas Solution
+
+import pandas as pd
+
+# Create DataFrames
+customers = pd.DataFrame({
+    'id': [1, 2, 3, 4],
+    'name': ['Joe', 'Henry', 'Sam', 'Max']
+})
+
+orders = pd.DataFrame({
+    'id': [1, 2],
+    'customerId': [3, 1]
+})
+
+# Left join Customers with Orders
+merged = customers.merge(orders, left_on='id', right_on='customerId', how='left')
+
+# Filter customers who have no orders (NaN in customerId)
+no_orders = merged[merged['customerId'].isna()]
+
+# Select only customer names
+result = no_orders[['name']].rename(columns={'name': 'Customers'})
+print(result)
