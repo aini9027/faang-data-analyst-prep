@@ -169,3 +169,60 @@ no_orders = merged[merged['customerId'].isna()]
 # Select only customer names
 result = no_orders[['name']].rename(columns={'name': 'Customers'})
 print(result)
+
+
+## 📘 SQL Practice Log - Entry 004: Department Projects & Salaries
+
+### 🗓️ Date: 2025-07-24  
+### 🎯 Problem: Department-wise Project Count and Average Salary  
+### 🔍 Topics: Multiple JOINs, Aggregation, HAVING
+
+---
+
+### **Objective**
+Return:
+- Department name
+- Total number of projects handled by employees in that department
+- Average salary of employees in that department
+
+Only include departments that have **at least one project**.
+
+---
+
+### **Tables**
+- **Employees (e)** → `emp_id`, `name`, `dept_id`
+- **Departments (d)** → `dept_id`, `dept_name`
+- **Salaries (s)** → `emp_id`, `salary`
+- **Projects (p)** → `project_id`, `emp_id`, `project_name`
+
+---
+
+### **Key SQL Concepts Learned**
+- **Multiple JOINs** to combine data from multiple tables:
+  - `Employees → Departments → Salaries → Projects`
+- **Aggregations**:
+  - `COUNT(p.project_id)` for project count
+  - `AVG(s.salary)` for average salary
+- **Grouping**:
+  - `GROUP BY d.dept_name` to aggregate data by department
+- **Filtering aggregated results**:
+  - `HAVING COUNT(p.project_id) > 0` to keep only departments with projects
+- **Aliases** for cleaner queries:
+  - `e`, `d`, `s`, `p` used for Employees, Departments, Salaries, Projects.
+
+---
+
+### **SQL Solution**
+```sql
+SELECT d.dept_name,
+       COUNT(p.project_id) AS total_projects,
+       AVG(s.salary) AS avg_salary
+FROM Employees AS e
+JOIN Departments AS d 
+    ON e.dept_id = d.dept_id
+JOIN Salaries AS s 
+    ON e.emp_id = s.emp_id
+JOIN Projects AS p 
+    ON e.emp_id = p.emp_id
+GROUP BY d.dept_name
+HAVING COUNT(p.project_id) > 0;
